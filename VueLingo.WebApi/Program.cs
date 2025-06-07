@@ -1,5 +1,7 @@
-var builder = WebApplication.CreateBuilder(args);
+using AiContentService.Interfaces;
+using AiContentService.Services;
 
+var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
 {
@@ -11,16 +13,13 @@ builder.Services.AddCors(options =>
     });
 });
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddHttpClient<ITextRewriter, AiRewriterService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -28,6 +27,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowVueDev");
 
 app.UseAuthorization();
 

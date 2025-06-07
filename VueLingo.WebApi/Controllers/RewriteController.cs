@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AiContentService.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using VueLingo.WebApi.Models;
 
 namespace VueLingo.WebApi.Controllers
@@ -7,21 +8,18 @@ namespace VueLingo.WebApi.Controllers
     [Route("[controller]")]
     public class RewriteController : ControllerBase
     {
-        [HttpPost]
-        public ActionResult<RewriteResponse> Rewrite([FromBody] RewriteRequest request)
+        private readonly ITextRewriter _rewriter;
+
+        public RewriteController(ITextRewriter rewriter)
         {
-            if (string.IsNullOrWhiteSpace(request.Text) || string.IsNullOrWhiteSpace(request.Tone))
-                return BadRequest("Text and Tone are required.");
+            _rewriter = rewriter;
+        }
 
-            // Mock "AI" rewriting logic
-            var rewritten = $"[🔁 {request.Tone.ToUpper()} version] {request.Text}";
-
-            var response = new RewriteResponse
-            {
-                RewrittenText = rewritten
-            };
-
-            return Ok(response);
+        [HttpPost]
+        public async Task<ActionResult<RewriteResponse>> Rewrite([FromBody] RewriteRequest request)
+        {
+            var result = await _rewriter.RewriteAsync(request.Text, request.Tone);
+            return Ok(new RewriteResponse { RewrittenText = result });
         }
     }
 }

@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36202.13 d17.14
+VisualStudioVersion = 17.14.36202.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VueLingo.WebApi", "..\VueLingo.WebApi\VueLingo.WebApi.csproj", "{D6759258-0976-DA39-D1E8-3F9D1516BA3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiContentService", "AiContentService\AiContentService.csproj", "{D45FF5AD-126C-46DC-9955-F7EF4036268E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{D6759258-0976-DA39-D1E8-3F9D1516BA3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6759258-0976-DA39-D1E8-3F9D1516BA3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6759258-0976-DA39-D1E8-3F9D1516BA3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D45FF5AD-126C-46DC-9955-F7EF4036268E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D45FF5AD-126C-46DC-9955-F7EF4036268E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D45FF5AD-126C-46DC-9955-F7EF4036268E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D45FF5AD-126C-46DC-9955-F7EF4036268E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
