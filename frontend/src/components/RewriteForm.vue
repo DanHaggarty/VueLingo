@@ -31,13 +31,37 @@
   const tone = ref('');
   const outputText = ref('');
 
-  function rewriteText() {
+  async function rewriteText() {
     if (!inputText.value || !tone.value) {
       alert('Please enter text and select a tone.');
       return;
     }
 
-    // Simulate AI response
-    outputText.value = `🔁 [${tone.value.toUpperCase()} rewrite]: ${inputText.value}`;
+    outputText.value = '';
+    isLoading.value = true;
+
+    try {
+      const response = await fetch('http://localhost:5000/rewrite', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          text: inputText.value,
+          tone: tone.value
+        })
+      });
+
+      if (!response.ok) throw new Error(`API error: ${response.status}`);
+
+      const result = await response.json();
+      outputText.value = result.rewrittenText;
+    } catch (err) {
+      outputText.value = '❌ Error contacting rewrite service.';
+      console.error(err);
+    } finally {
+      isLoading.value = false;
+    }
   }
+
 </script>
