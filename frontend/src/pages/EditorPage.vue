@@ -1,6 +1,10 @@
 <template>
   <div>
-    <h2>Editor Page</h2>
-    <p>This is where you’ll rewrite content using AI.</p>
+    <h2 class="text-2xl font-bold mb-4">VueLingo Rewrite Editor</h2>
+    <RewriteForm />
   </div>
 </template>
+
+<script setup>
+import RewriteForm from '../components/RewriteForm.vue';
+</script>
