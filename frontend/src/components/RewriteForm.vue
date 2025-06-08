@@ -18,6 +18,12 @@
         <option value="Verbose">Verbose</option>
         <option value="Pirate">Pirate</option>
       </select>
+      <!-- Custom Tone input -->
+      <input v-model="customTone"
+             class="editor-custom-tone"
+             type="text"
+             placeholder="Or enter a custom tone...(overrides selected tone)"
+             @input="clearPresetTone" />
 
       <button @click="rewriteText"
               :disabled="isLoading"
@@ -29,7 +35,7 @@
     <div class="editor-output-container" v-if="outputText">
       <h2>AI-Optimised Content</h2>
 
-     
+
       <div class="editor-right">
 
         <div class="editor-output-text">
@@ -47,6 +53,7 @@
 
   const inputText = ref('')
   const tone = ref('')
+  const customTone = ref('')
   const outputText = ref('')
   const isLoading = ref(false)
   const { copyToClipboard } = useClipboard()
@@ -59,14 +66,22 @@
     }
   }
 
+  function clearPresetTone() {
+    if (customTone.value) {
+      tone.value = ''  // Deselect the preset tone if custom tone is provided
+    }
+  }
+
   async function rewriteText() {
+    const selectedTone = customTone.value.trim() || tone.value
+
     if (!inputText.value.trim()) {
       alert("Please enter some text to rewrite.");
       return;
     }
 
-    if (!tone.value) {
-      alert("Please select a tone before rewriting.");
+    if (!selectedTone) {
+      alert("Please select or enter a tone before rewriting.");
       return;
     }
 
@@ -77,7 +92,7 @@
       const res = await fetch('http://localhost:5000/rewrite', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: inputText.value, tone: tone.value })
+        body: JSON.stringify({ text: inputText.value, tone: selectedTone })
       });
 
       const data = await res.json();
@@ -89,6 +104,7 @@
       isLoading.value = false;
     }
   }
+
 </script>
 
 <style scoped>
@@ -180,6 +196,44 @@
     max-height: 100%;
   }
 
+  .editor-custom-tone {
+    padding: 0.65rem;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    margin-top: 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+    .editor-custom-tone:focus {
+      border-color: #0d9488;
+      box-shadow: 0 0 0 2px rgba(13, 148, 136, 0.2);
+      outline: none;
+    }
+
+  .copy-button {
+    margin-top: 1rem;
+    padding: 0.65rem 1rem;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: none;
+    background-color: #64748b; /* slate-500 */
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+    .copy-button:hover {
+      background-color: #475569; /* slate-600 */
+    }
+
+    .copy-button:active {
+      background-color: #334155; /* slate-700 */
+    }
+
+
   @media (max-width: 900px) {
     .editor-container {
       flex-direction: column;
@@ -195,7 +249,5 @@
       flex: 0 0 auto;
     }
   }
-
-
 </style>
 
