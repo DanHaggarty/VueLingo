@@ -13,6 +13,7 @@
         <option value="formal">Formal</option>
         <option value="casual">Casual</option>
         <option value="seo">SEO</option>
+        <option value="child">Child</option>
       </select>
 
       <button @click="rewriteText"
@@ -38,24 +39,33 @@
   const isLoading = ref(false)
 
   async function rewriteText() {
-    if (!inputText.value || !tone.value) return
-    isLoading.value = true
-    outputText.value = ''
+    if (!inputText.value.trim()) {
+      alert("Please enter some text to rewrite.");
+      return;
+    }
+
+    if (!tone.value) {
+      alert("Please select a tone before rewriting.");
+      return;
+    }
+
+    isLoading.value = true;
+    outputText.value = '';
 
     try {
       const res = await fetch('http://localhost:5000/rewrite', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text: inputText.value, tone: tone.value })
-      })
+      });
 
-      const data = await res.json()
-      outputText.value = data.rewrittenText
+      const data = await res.json();
+      outputText.value = data.rewrittenText;
     } catch (err) {
-      outputText.value = '❌ Error contacting API.'
-      console.error(err)
+      outputText.value = '❌ Error contacting API.';
+      console.error(err);
     } finally {
-      isLoading.value = false
+      isLoading.value = false;
     }
   }
 </script>
