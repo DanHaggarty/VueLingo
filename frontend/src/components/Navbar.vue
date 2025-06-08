@@ -1,6 +1,8 @@
 <template>
   <nav class="navbar">
-    <div class="logo">VueLingo</div>
+    <RouterLink to="/">
+      <div class="logo">VueLingo</div>
+    </RouterLink>
     <div class="nav-links">
       <RouterLink to="/">Editor</RouterLink>
       <RouterLink to="/history">History</RouterLink>
