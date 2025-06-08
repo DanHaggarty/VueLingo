@@ -1,4 +1,5 @@
 <template>
+
   <div class="editor-container">
     <div class="editor-left">
       <h2 class="editor-title">Rewrite Your Content</h2>
@@ -13,7 +14,6 @@
         <option value="formal">Formal</option>
         <option value="casual">Casual</option>
         <option value="seo">SEO</option>
-        <option value="child">Child</option>
       </select>
 
       <button @click="rewriteText"
@@ -23,9 +23,13 @@
       </button>
     </div>
 
-    <div class="editor-right" v-if="outputText">
-      <h3>Output</h3>
-      <p>{{ outputText }}</p>
+    <div class="editor-output-container" v-if="outputText">
+      <h2 class="editor-title">Output</h2>
+      <div class="editor-right">
+        <div class="editor-output-text">
+          {{ outputText }}
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -71,24 +75,6 @@
 </script>
 
 <style scoped>
-/*  .editor-container {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 2rem;
-    padding: 2rem;
-    box-sizing: border-box;
-    flex-wrap: nowrap;
-  }
-
-  .editor-left {
-    width: 60%;
-    max-width: 700px;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }*/
   .editor-container {
     display: flex;
     flex-direction: row;
@@ -142,13 +128,34 @@
     }
 
   .editor-right {
-    width: 35%;
-    min-width: 280px;
-    background: #f1f5f9;
-    border-left: 4px solid #0d9488;
-    padding: 1rem;
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
+    min-height: 200px;
+    background: #ffffff;
+    border: 1px solid #ccc;
     border-radius: 10px;
-    word-break: break-word;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-sizing: border-box;
+  }
+
+  .editor-output-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 0.75rem;
+  }
+
+  .editor-output-text {
+    flex-grow: 1;
+    white-space: pre-wrap;
+    line-height: 1.5;
+    color: #334155;
+    overflow-y: auto;
+    max-height: 100%;
   }
 
   /* 📱 Stack on small screens */
