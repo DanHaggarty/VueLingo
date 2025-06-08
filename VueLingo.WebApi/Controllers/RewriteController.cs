@@ -18,7 +18,7 @@ namespace VueLingo.WebApi.Controllers
         [HttpPost]
         public async Task<ActionResult<RewriteResponse>> Rewrite([FromBody] RewriteRequest request)
         {
-            var result = await _rewriter.RewriteAsync(request.Text, request.Tone);
+            var result = await _rewriter.RewriteAsync(request.Text, request.Tone, request.TranslateTo);
             return Ok(new RewriteResponse { RewrittenText = result });
         }
     }

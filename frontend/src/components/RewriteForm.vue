@@ -1,5 +1,7 @@
 <template>
+  <!-- Editor fields -->
   <div class="editor-container">
+    <!-- Text input -->
     <div class="editor-left">
       <h2>Content to AI Optimise</h2>
       <textarea v-model="inputText"
@@ -7,11 +9,13 @@
                 rows="10"
                 placeholder="Paste your text here..."></textarea>
 
+      <!-- Tone selection -->
       <select v-model="tone" class="editor-select">
         <option disabled value="">Select tone</option>
         <option v-for="t in tones" :key="t" :value="t">{{ t }}</option>
       </select>
-      <!-- Custom Tone input -->
+
+      <!-- Custom tone input -->
       <input v-model="customTone"
              class="editor-custom-tone"
              type="text"
@@ -19,6 +23,13 @@
              title="Entering a custom tone will override the preset tone selected"
              @input="clearPresetTone" />
 
+      <!-- Optional language selection -->
+      <select v-model="selectedLanguage" class="editor-select">
+        <option value="">No translation</option>
+        <option v-for="lang in languages" :key="lang" :value="lang">{{ lang }}</option>
+      </select>
+
+      <!-- Submit button -->
       <button @click="rewriteText"
               :disabled="isLoading"
               class="editor-button">
@@ -26,12 +37,10 @@
       </button>
     </div>
 
+    <!-- Text output -->
     <div class="editor-output-container" v-if="outputText">
       <h2>AI-Optimised Content</h2>
-
-
       <div class="editor-right">
-
         <div class="editor-output-text">
           {{ outputText }}
         </div>
@@ -45,11 +54,14 @@
   import { ref } from 'vue'
   import { useClipboard } from '@/composables/useClipboard'
   import toneList from '@/data/tones.json'
+  import languageList from '@/data/languages.json'
 
   const inputText = ref('')
   const tones = ref(toneList)
   const tone = ref('')
   const customTone = ref('')
+  const languages = ref(languageList)
+  const selectedLanguage = ref('')
   const outputText = ref('')
   const isLoading = ref(false)
   const { copyToClipboard } = useClipboard()
@@ -69,7 +81,7 @@
   }
 
   async function rewriteText() {
-    const selectedTone = customTone.value.trim() || tone.value
+    const selectedTone = customTone.value.trim() || tone.value;
 
     if (!inputText.value.trim()) {
       alert("Please enter some text to rewrite.");
@@ -88,7 +100,11 @@
       const res = await fetch('http://localhost:5000/rewrite', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: inputText.value, tone: selectedTone })
+        body: JSON.stringify({
+          text: inputText.value,
+          tone: selectedTone,
+          translateTo: selectedLanguage.value || null
+        })
       });
 
       const data = await res.json();
@@ -100,6 +116,8 @@
       isLoading.value = false;
     }
   }
+
+
 
 </script>
 

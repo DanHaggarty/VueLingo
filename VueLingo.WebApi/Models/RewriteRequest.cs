@@ -4,5 +4,6 @@
     {
         public string Text { get; set; } = string.Empty;
         public string Tone { get; set; } = "neutral";
+        public string? TranslateTo { get; set; }
     }
 }
