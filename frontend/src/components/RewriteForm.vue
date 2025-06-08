@@ -15,6 +15,8 @@
         <option value="child">Child</option>
         <option value="Urgent">Urgent</option>
         <option value="Basic">Basic</option>
+        <option value="Verbose">Verbose</option>
+        <option value="Pirate">Pirate</option>
       </select>
 
       <button @click="rewriteText"
@@ -26,11 +28,14 @@
 
     <div class="editor-output-container" v-if="outputText">
       <h2>AI-Optimised Content</h2>
+
+     
       <div class="editor-right">
 
         <div class="editor-output-text">
           {{ outputText }}
         </div>
+        <button @click="copyOutput" class="copy-button">Copy to clipboard</button>
       </div>
     </div>
   </div>
@@ -38,11 +43,21 @@
 
 <script setup>
   import { ref } from 'vue'
+  import { useClipboard } from '@/composables/useClipboard'
 
   const inputText = ref('')
   const tone = ref('')
   const outputText = ref('')
   const isLoading = ref(false)
+  const { copyToClipboard } = useClipboard()
+
+  function copyOutput() {
+    if (outputText.value.trim()) {
+      copyToClipboard(outputText.value)
+    } else {
+      alert('Nothing to copy.')
+    }
+  }
 
   async function rewriteText() {
     if (!inputText.value.trim()) {
