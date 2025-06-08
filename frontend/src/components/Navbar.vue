@@ -1,7 +1,37 @@
 <template>
-  <nav class="bg-gray-800 text-white p-4 flex gap-6 items-center">
-    <h1 class="text-xl font-bold">VueLingo</h1>
-    <RouterLink to="/" class="hover:underline">Editor</RouterLink>
-    <RouterLink to="/history" class="hover:underline">History</RouterLink>
+  <nav class="navbar">
+    <div class="logo">VueLingo</div>
+    <div class="nav-links">
+      <RouterLink to="/">Editor</RouterLink>
+      <RouterLink to="/history">History</RouterLink>
+    </div>
   </nav>
 </template>
+
+<style scoped>
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    z-index: 1000;
+  }
+
+  .logo {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+
+  .nav-links a {
+    margin-left: 1.5rem;
+    text-decoration: none;
+    color: #007b7f;
+  }
+</style>
