@@ -30,6 +30,7 @@
   const inputText = ref('');
   const tone = ref('');
   const outputText = ref('');
+  const isLoading = ref(false)
 
   async function rewriteText() {
     if (!inputText.value || !tone.value) {
@@ -41,7 +42,7 @@
     isLoading.value = true;
 
     try {
-      const response = await fetch('http://localhost:5000/rewrite', {
+      const response = await fetch('http://localhost:5218/rewrite', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
