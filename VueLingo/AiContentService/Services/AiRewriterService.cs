@@ -43,11 +43,11 @@ namespace AiContentService.Services
         /// <exception cref="HttpRequestException">Thrown if the HTTP request to the AI service fails.</exception>
         public async Task<string> RewriteAsync(string text, string tone, string? translateTo = null)
         {
-            var prompt = $"Rewrite the following text in a {tone} tone:\n\n{text}";
+            var prompt = $"Rewrite the following text in a {tone} tone. Only return the rewritten text without any labels or prefixes:\n\n{text}";
 
             if (!string.IsNullOrWhiteSpace(translateTo))
             {
-                prompt += $"\n\nThen translate it into {translateTo}.";
+                prompt += $"\n\nThen translate it into {translateTo}. Again, only return the translated text without any labels or headers such as 'Translated into' - we just want the translated value.";
             }
 
             var payload = new

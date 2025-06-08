@@ -16,16 +16,21 @@ export function useExportCsv() {
             return
         }
 
-        const headers = ['Timestamp', 'Tone', 'Language', 'Input', 'Output']
+        const headers = ['Timestamp', 'Tone', 'Language', 'Input', 'Output Native', 'Output Translation']
         const csvRows = [headers.join(',')]
 
         history.forEach(item => {
+            const outputParts = (item.output || '').split(/\n\n+/)
+            const outputNative = outputParts[0] || ''
+            const outputTranslation = outputParts.slice(1).join(' ').trim()
+
             const row = [
                 escapeCsv(new Date(item.timestamp).toLocaleString()),
                 escapeCsv(item.tone),
                 escapeCsv(item.language || 'None'),
                 escapeCsv(item.input),
-                escapeCsv(item.output)
+                escapeCsv(outputNative),
+                escapeCsv(outputTranslation)
             ]
             csvRows.push(row.join(','))
         })
