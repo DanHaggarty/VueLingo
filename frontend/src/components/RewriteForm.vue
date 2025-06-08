@@ -22,7 +22,8 @@
       <input v-model="customTone"
              class="editor-custom-tone"
              type="text"
-             placeholder="Or enter a custom tone...(overrides selected tone)"
+             placeholder="Type your own tone (e.g. Friendly, Legal, Dramatic)"
+             title="Entering a custom tone will override the preset tone selected"
              @input="clearPresetTone" />
 
       <button @click="rewriteText"
