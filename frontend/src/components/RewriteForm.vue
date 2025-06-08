@@ -95,7 +95,7 @@
 
     isLoading.value = true;
     outputText.value = '';
-
+      
     try {
       const res = await fetch('http://localhost:5000/rewrite', {
         method: 'POST',
@@ -109,6 +109,15 @@
 
       const data = await res.json();
       outputText.value = data.rewrittenText;
+
+      saveToHistory({
+        input: inputText.value,
+        output: data.rewrittenText,
+        tone: selectedTone,
+        language: selectedLanguage.value || null,
+        timestamp: new Date().toISOString()
+      });
+
     } catch (err) {
       outputText.value = '❌ Error contacting API.';
       console.error(err);
@@ -117,7 +126,8 @@
     }
   }
 
-
+  import { useHistory } from '@/composables/useHistory'
+  const { saveToHistory } = useHistory()
 
 </script>
 
