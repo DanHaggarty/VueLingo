@@ -1,9 +1,7 @@
 <template>
-
   <div class="editor-container">
     <div class="editor-left">
-      <h2 class="editor-title">Rewrite Your Content</h2>
-
+      <h2>Content to AI Optimise</h2>
       <textarea v-model="inputText"
                 class="editor-textarea"
                 rows="10"
@@ -14,6 +12,9 @@
         <option value="formal">Formal</option>
         <option value="casual">Casual</option>
         <option value="seo">SEO</option>
+        <option value="child">Child</option>
+        <option value="Urgent">Urgent</option>
+        <option value="Basic">Basic</option>
       </select>
 
       <button @click="rewriteText"
@@ -24,8 +25,9 @@
     </div>
 
     <div class="editor-output-container" v-if="outputText">
-      <h2 class="editor-title">Output</h2>
+      <h2>AI-Optimised Content</h2>
       <div class="editor-right">
+
         <div class="editor-output-text">
           {{ outputText }}
         </div>
@@ -75,6 +77,10 @@
 </script>
 
 <style scoped>
+  .editor-wrapper {
+    padding: 2rem;
+  }
+
   .editor-container {
     display: flex;
     flex-direction: row;
@@ -86,7 +92,7 @@
   }
 
   .editor-left {
-    flex: 0 0 700px; /* ✅ FIXED WIDTH, won't shrink or grow */
+    flex: 0 0 700px;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -128,6 +134,7 @@
     }
 
   .editor-right {
+    margin-top: 16px;
     flex: 1;
     min-width: 300px;
     max-width: 400px;
@@ -158,15 +165,19 @@
     max-height: 100%;
   }
 
-  /* 📱 Stack on small screens */
   @media (max-width: 900px) {
     .editor-container {
       flex-direction: column;
     }
 
     .editor-left,
+    .editor-output-container,
     .editor-right {
       width: 100%;
+    }
+
+    .editor-left {
+      flex: 0 0 auto;
     }
   }
 
