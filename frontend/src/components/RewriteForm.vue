@@ -1,32 +1,35 @@
 <template>
-  <div class="editor-wrapper">
-    <h2 class="editor-title">Rewrite Your Content</h2>
+  <div class="editor-container">
+    <div class="editor-left">
+      <h2 class="editor-title">Rewrite Your Content</h2>
 
-    <textarea v-model="inputText"
-              class="editor-textarea"
-              rows="10"
-              placeholder="Paste your text here..."></textarea>
+      <textarea v-model="inputText"
+                class="editor-textarea"
+                rows="10"
+                placeholder="Paste your text here..."></textarea>
 
-    <select v-model="tone" class="editor-select">
-      <option disabled value="">Select tone</option>
-      <option value="formal">Formal</option>
-      <option value="casual">Casual</option>
-      <option value="seo">SEO</option>
-      <option value="child">Child</option>
-    </select>
+      <select v-model="tone" class="editor-select">
+        <option disabled value="">Select tone</option>
+        <option value="formal">Formal</option>
+        <option value="casual">Casual</option>
+        <option value="seo">SEO</option>
+      </select>
 
-    <button @click="rewriteText"
-            :disabled="isLoading"
-            class="editor-button">
-      {{ isLoading ? 'Rewriting…' : 'Rewrite' }}
-    </button>
+      <button @click="rewriteText"
+              :disabled="isLoading"
+              class="editor-button">
+        {{ isLoading ? 'Rewriting…' : 'Rewrite' }}
+      </button>
+    </div>
 
-    <div v-if="outputText" class="editor-output">
+    <div class="editor-right" v-if="outputText">
       <h3>Output</h3>
       <p>{{ outputText }}</p>
     </div>
   </div>
 </template>
+
+
 
 <script setup>
   import { ref } from 'vue'
@@ -60,59 +63,69 @@
 </script>
 
 <style scoped>
-  .editor-wrapper {
+  .editor-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 2rem;
+    flex-wrap: wrap; /* makes it responsive */
+  }
+
+  /* Left side form */
+  .editor-left {
     max-width: 700px;
-    margin: 0 auto;
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    padding: 2rem 1rem;
   }
 
   .editor-title {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+    color: #1e293b;
     text-align: center;
-    margin-bottom: 1rem;
   }
 
   .editor-textarea {
     width: 100%;
+    min-height: 200px;
     padding: 1rem;
     font-size: 1rem;
     border: 1px solid #ccc;
-    border-radius: 8px;
-    resize: vertical;
+    border-radius: 10px;
   }
 
-  .editor-select {
-    padding: 0.5rem;
+  .editor-select,
+  .editor-button {
+    padding: 0.65rem;
     font-size: 1rem;
-    border-radius: 6px;
+    border-radius: 10px;
     border: 1px solid #ccc;
   }
 
   .editor-button {
-    padding: 0.75rem;
-    font-size: 1rem;
     background-color: #0d9488;
     color: white;
     border: none;
-    border-radius: 6px;
     cursor: pointer;
   }
 
     .editor-button:disabled {
       background-color: #94a3b8;
-      cursor: not-allowed;
     }
 
-  .editor-output {
-    margin-top: 2rem;
+  /* Output panel (independent, fixed size) */
+  .editor-right {
+    width: 320px;
     background: #f1f5f9;
-    padding: 1rem;
     border-left: 4px solid #0d9488;
-    border-radius: 6px;
+    padding: 1rem;
+    border-radius: 10px;
+    word-break: break-word;
   }
+
 </style>
 
 
