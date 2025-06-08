@@ -9,14 +9,7 @@
 
       <select v-model="tone" class="editor-select">
         <option disabled value="">Select tone</option>
-        <option value="formal">Formal</option>
-        <option value="casual">Casual</option>
-        <option value="seo">SEO</option>
-        <option value="child">Child</option>
-        <option value="Urgent">Urgent</option>
-        <option value="Basic">Basic</option>
-        <option value="Verbose">Verbose</option>
-        <option value="Pirate">Pirate</option>
+        <option v-for="t in tones" :key="t" :value="t">{{ t }}</option>
       </select>
       <!-- Custom Tone input -->
       <input v-model="customTone"
@@ -51,8 +44,10 @@
 <script setup>
   import { ref } from 'vue'
   import { useClipboard } from '@/composables/useClipboard'
+  import toneList from '@/data/tones.json'
 
   const inputText = ref('')
+  const tones = ref(toneList)
   const tone = ref('')
   const customTone = ref('')
   const outputText = ref('')
