@@ -37,4 +37,3 @@ jobs:
         with:
           app-name: vueling-api-demo
           package: ./publish
-            
