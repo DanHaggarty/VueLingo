@@ -14,8 +14,4 @@
     <ProjectReference Include="..\VueLingo\AiContentService\AiContentService.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Include=".github\workflows\deploy.yml" />
-  </ItemGroup>
-
 </Project>
