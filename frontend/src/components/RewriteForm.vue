@@ -95,9 +95,10 @@
 
     isLoading.value = true;
     outputText.value = '';
-      
+
     try {
-      const res = await fetch('http://localhost:5000/rewrite', {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      const res = await fetch(`${apiUrl}/rewrite`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
