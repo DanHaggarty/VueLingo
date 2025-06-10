@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{02EA
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{141FC3A8-57A3-44B4-9E08-88CC01C0038F}"
 	ProjectSection(SolutionItems) = preProject
+		azure-static-web-apps.yml = azure-static-web-apps.yml
 		..\VueLingo.WebApi\.github\workflows\deploy.yml = ..\VueLingo.WebApi\.github\workflows\deploy.yml
 	EndProjectSection
 EndProject
