@@ -4,6 +4,7 @@
     <!-- Text input -->
     <div class="editor-left">
       <h2>Content to AI Optimise</h2>
+      <p>API: {{ import.meta.env.VITE_API_URL }}</p>
       <textarea v-model="inputText"
                 class="editor-textarea"
                 rows="10"
