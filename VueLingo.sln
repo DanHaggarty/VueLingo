@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36202.13
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VueLingo.WebApi", "..\VueLingo.WebApi\VueLingo.WebApi.csproj", "{D6759258-0976-DA39-D1E8-3F9D1516BA3D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiContentService", "AiContentService\AiContentService.csproj", "{D45FF5AD-126C-46DC-9955-F7EF4036268E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
@@ -14,20 +12,22 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		..\VueLingo.WebApi\.github\workflows\deploy.yml = ..\VueLingo.WebApi\.github\workflows\deploy.yml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VueLingo.WebApi", "VueLingo.WebApi\VueLingo.WebApi.csproj", "{8C13C7B2-2B86-C98F-17D2-CC0D9C90292A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D6759258-0976-DA39-D1E8-3F9D1516BA3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D6759258-0976-DA39-D1E8-3F9D1516BA3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D6759258-0976-DA39-D1E8-3F9D1516BA3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D6759258-0976-DA39-D1E8-3F9D1516BA3D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D45FF5AD-126C-46DC-9955-F7EF4036268E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D45FF5AD-126C-46DC-9955-F7EF4036268E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D45FF5AD-126C-46DC-9955-F7EF4036268E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D45FF5AD-126C-46DC-9955-F7EF4036268E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C13C7B2-2B86-C98F-17D2-CC0D9C90292A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C13C7B2-2B86-C98F-17D2-CC0D9C90292A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C13C7B2-2B86-C98F-17D2-CC0D9C90292A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C13C7B2-2B86-C98F-17D2-CC0D9C90292A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

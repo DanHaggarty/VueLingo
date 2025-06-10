@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\VueLingo\AiContentService\AiContentService.csproj" />
+    <ProjectReference Include="..\AiContentService\AiContentService.csproj" />
   </ItemGroup>
 
 </Project>
