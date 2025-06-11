@@ -4,7 +4,6 @@
     <!-- Text input -->
     <div class="editor-left">
       <h2>Content to AI Optimise</h2>
-      <p>API: {{ displayedApiUrl }}</p>
       <textarea v-model="inputText"
                 class="editor-textarea"
                 rows="10"
@@ -98,7 +97,7 @@
     outputText.value = '';
 
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      const apiUrl = 'https://vueling-api-demo-dygwfjfgcjemgtg8.westeurope-01.azurewebsites.net';
       const displayedApiUrl = apiUrl; //
 
       const res = await fetch(`${apiUrl}/rewrite`, {
