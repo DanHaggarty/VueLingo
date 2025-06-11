@@ -12,30 +12,16 @@ on:
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
-    name: Build and Deploy Vue App
+    name: Build and Deploy Vue App via Azure SWA Action
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18' # Match your Vue app's Node version
-
-      - name: Install Dependencies
-        run: |
-          cd frontend
-          npm install
-
-      - name: Build Vue App
-        run: |
-          cd frontend
-          npm run build
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Deploy to Azure Static Web Apps
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
-          repo_token: ${{ secrets.GITHUB_TOKEN }} # Required for GitHub deployments
+          repo_token: ${{ secrets.GITHUB_TOKEN }} # Required for PR builds
           action: "upload"
-          app_location: "frontend"      # Where your app lives
-          output_location: "dist"       # Where your Vue app builds to
+          app_location: "frontend"        # Where your Vue app source lives
+          output_location: "dist"         # Where Vite puts the built files
