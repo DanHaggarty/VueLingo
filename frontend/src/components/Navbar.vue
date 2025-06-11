@@ -6,6 +6,7 @@
     <div class="nav-links">
       <RouterLink to="/">Editor</RouterLink>
       <RouterLink to="/history">History</RouterLink>
+      <RouterLink to="/about">About</RouterLink>
     </div>
   </nav>
 </template>
