@@ -5,7 +5,7 @@
     <section>
       <h2>What is VueLingo?</h2>
       <p>
-        <strong>VueLingo</strong> is a lightweight AI-powered content rewriting too l. It lets you paste any text, choose a tone (like formal, casual, SEO, or even “pirate”), and optionally translate the output into another language — all in a clean, fast, and responsive web interface.
+        <strong>VueLingo</strong> is a lightweight AI-powered content rewriting tool. It lets you paste any text, choose a tone (like formal, casual, SEO, or even “pirate”), and optionally translate the output into another language — all in a clean, fast, and responsive web interface.
       </p>
       <p>
         It’s designed to help content creators, marketers, and multilingual teams quickly optimize or adapt copy for different tones and audiences.
