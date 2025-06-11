@@ -11,7 +11,7 @@
                 placeholder="Paste your text here..."></textarea>
 
       <!-- Tone selection -->
-      <select v-model="tone" class="editor-sele
+      <select v-model="tone" class="editor-select">
         <option disabled value="">Select tone</option>
         <option v-for="t in tones" :key="t" :value="t">{{ t }}</option>
       </select>
