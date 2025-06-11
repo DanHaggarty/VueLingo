@@ -4,14 +4,14 @@
     <!-- Text input -->
     <div class="editor-left">
       <h2>Content to AI Optimise</h2>
-      <p>API: {{ import.meta.env.VITE_API_URL }}</p>
+      <p>API: {{ displayedApiUrl }}</p>
       <textarea v-model="inputText"
                 class="editor-textarea"
                 rows="10"
                 placeholder="Paste your text here..."></textarea>
 
       <!-- Tone selection -->
-      <select v-model="tone" class="editor-select">
+      <select v-model="tone" class="editor-sele
         <option disabled value="">Select tone</option>
         <option v-for="t in tones" :key="t" :value="t">{{ t }}</option>
       </select>
@@ -99,6 +99,8 @@
 
     try {
       const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      const displayedApiUrl = apiUrl; //
+
       const res = await fetch(`${apiUrl}/rewrite`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
