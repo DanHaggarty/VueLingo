@@ -7,7 +7,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowVueDev", policy =>
     {
-        policy.WithOrigins("https://happy-dune-0e302d803.6.azurestaticapps.net")
+        policy.WithOrigins("https://happy-dune-0e302d803.6.azurestaticapps.net", "http://localhost:5173")
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
