@@ -98,8 +98,6 @@
 
     try {
       const apiUrl = 'https://vueling-api-demo-dygwfjfgcjemgtg8.westeurope-01.azurewebsites.net';
-      const displayedApiUrl = apiUrl; //
-
       const res = await fetch(`${apiUrl}/rewrite`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
