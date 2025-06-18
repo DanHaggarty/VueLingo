@@ -14,4 +14,8 @@
     <ProjectReference Include="..\AiContentService\AiContentService.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ControllerTests\" />
+  </ItemGroup>
+
 </Project>

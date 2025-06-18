@@ -8,7 +8,8 @@
         /// <summary>
         /// The rewritten version of the original input text.
         /// </summary>
+        /// 
+        
         public string RewrittenText { get; set; } = string.Empty;
     }
-
 }
